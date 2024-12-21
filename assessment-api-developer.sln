@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Test", "5.Test", "{DA9E77
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.Domain", "assessment-api-developer.Domain\assessment-api-developer.Domain.csproj", "{71E5DFDF-FC9A-4F79-88BE-D55A7886D0D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.Services", "assessment-api-developer.Services\assessment-api-developer.Services.csproj", "{FB399758-E546-40C2-BC74-5B93E8101ED7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +29,15 @@ Global
 		{71E5DFDF-FC9A-4F79-88BE-D55A7886D0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71E5DFDF-FC9A-4F79-88BE-D55A7886D0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71E5DFDF-FC9A-4F79-88BE-D55A7886D0D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB399758-E546-40C2-BC74-5B93E8101ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB399758-E546-40C2-BC74-5B93E8101ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB399758-E546-40C2-BC74-5B93E8101ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB399758-E546-40C2-BC74-5B93E8101ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{71E5DFDF-FC9A-4F79-88BE-D55A7886D0D5} = {F2BC8CA4-E7AE-4381-9C4E-4F513CCBE78D}
 	EndGlobalSection
 EndGlobal
