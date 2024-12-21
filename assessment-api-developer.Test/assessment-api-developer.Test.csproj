@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\assessment-api-developer.API\assessment-api-developer.API.csproj" />
     <ProjectReference Include="..\assessment-api-developer.Domain\assessment-api-developer.Domain.csproj" />
     <ProjectReference Include="..\assessment-api-developer.Services\assessment-api-developer.Services.csproj" />
   </ItemGroup>
