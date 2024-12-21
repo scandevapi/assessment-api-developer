@@ -21,7 +21,7 @@ namespace assessment_api_developer.Test.Services
         public async Task GetAllCustomers_ShouldReturnokObjectResult()
         {
             var customers = new List<Customer>
-            { 
+            {
                 new Customer {ID=1, Name = "Customer One"},
                 new Customer {ID=1, Name = "Customer Two"}
             };
@@ -33,6 +33,29 @@ namespace assessment_api_developer.Test.Services
             Assert.Equal(customers, result.Value);
 
         }
-        
+
+        [Fact]
+        public async Task GetCustomer_ShouldReturnOkObjectResult()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One" };
+            _mockService.Setup(s => s.GetCustomerAsync(customer.ID)).ReturnsAsync(customer);
+
+            var result = await _controller.GetCustomer(customer.ID) as OkObjectResult;
+
+            Assert.NotNull(result);
+            Assert.Equal(customer, result.Value);
+        }
+
+        [Fact]
+        public async Task AddCustomer_ShouldReturnCreatedAtAction()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "California", Zip = "12345" };
+            _mockService.Setup(s => s.AddCustomerAsync(It.IsAny<Customer>())).Verifiable();
+
+            var result = await _controller.AddCustomer(customer) as CreatedAtActionResult;
+
+            Assert.NotNull(result);
+            Assert.Equal(nameof(_controller.GetCustomer), result.ActionName);   
+        }
     }
 }
