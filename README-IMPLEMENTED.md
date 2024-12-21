@@ -42,8 +42,8 @@ Implemented a complete set of API endpoints:
 ## Installation and Usage
 
 ### Prerequisites
-- .NET SDK (version 6 or later)
-- A tool for testing APIs (e.g., Postman or curl)
+- .NET SDK (version 8 or later)
+- A tool for testing APIs (e.g., Postman, curl or using Swagger)
 
 ### Steps
 1. **Clone the repository**:
