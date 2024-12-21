@@ -1,6 +1,10 @@
 @assessment_api_developer.API_HostAddress = http://localhost:5155
 
+# Get all Customres
 GET {{assessment_api_developer.API_HostAddress}}/api/V1/Customers/
 Accept: application/json
 
-###
+
+# Get Customer by ID
+GET {{assessment_api_developer.API_HostAddress}}/api/V1/Customers/1
+Accept: application/json
