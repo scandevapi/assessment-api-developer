@@ -55,7 +55,44 @@ namespace assessment_api_developer.Test.Services
             var result = await _controller.AddCustomer(customer) as CreatedAtActionResult;
 
             Assert.NotNull(result);
-            Assert.Equal(nameof(_controller.GetCustomer), result.ActionName);   
+            Assert.Equal(nameof(_controller.GetCustomer), result.ActionName);
         }
+
+        [Fact]
+        public async Task AddCustomer_WithoutZipCode_ShouldReturnCreatedAtAction()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One" };
+            _mockService.Setup(s => s.AddCustomerAsync(It.IsAny<Customer>())).Verifiable();
+
+            var result = await _controller.AddCustomer(customer) as CreatedAtActionResult;
+
+            Assert.NotNull(result);
+            Assert.Equal(nameof(_controller.GetCustomer), result.ActionName);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_ShouldReturnNoContentResult()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "California", Zip = "12345" };
+            _mockService.Setup(s => s.GetCustomerAsync(customer.ID)).ReturnsAsync(new Customer { ID = 1 });
+            _mockService.Setup(s => s.UpdateCustomerAsync(It.IsAny<Customer>())).Verifiable();
+
+            var result = await _controller.UpdateCustomer(customer.ID, customer) as NoContentResult;
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_WithoutZipCode_ShouldReturnNoContentResult()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One"};
+            _mockService.Setup(s => s.GetCustomerAsync(customer.ID)).ReturnsAsync(new Customer { ID = 1 });
+            _mockService.Setup(s => s.UpdateCustomerAsync(It.IsAny<Customer>())).Verifiable();
+
+            var result = await _controller.UpdateCustomer(customer.ID, customer) as NoContentResult;
+
+            Assert.NotNull(result);
+        }
+
     }
 }

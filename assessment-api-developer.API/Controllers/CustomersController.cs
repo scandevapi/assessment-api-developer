@@ -65,5 +65,32 @@ namespace assessment_api_developer.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateCustomer(int id, [FromBody] Customer customer)
+        {
+            try
+            {
+                if(id != customer.ID || !ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+
+                await _customerService.UpdateCustomerAsync(customer);
+                return NoContent();
+            }
+            catch (CustomerNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (CustomerStateZipException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
