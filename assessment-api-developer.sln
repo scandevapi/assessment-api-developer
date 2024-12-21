@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.UI", "assessment-api-developer.UI\assessment-api-developer.UI.csproj", "{867B4AA8-EEC3-4999-8BB1-AB03AF213F26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.Test", "assessment-api-developer.Test\assessment-api-developer.Test.csproj", "{31F71699-D567-41CB-AD0E-6A8B94E16694}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{867B4AA8-EEC3-4999-8BB1-AB03AF213F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{867B4AA8-EEC3-4999-8BB1-AB03AF213F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{867B4AA8-EEC3-4999-8BB1-AB03AF213F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F71699-D567-41CB-AD0E-6A8B94E16694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F71699-D567-41CB-AD0E-6A8B94E16694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F71699-D567-41CB-AD0E-6A8B94E16694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F71699-D567-41CB-AD0E-6A8B94E16694}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +67,6 @@ Global
 		{5BA98B0F-03C0-4D6C-9CF0-EEBFE57F0E25} = {9F488C9B-7BFF-43D7-B5C5-85E68E7CF1E5}
 		{BEFA0E1D-4606-4583-9A92-E48B9597B965} = {B7C98187-1557-4BB9-A69A-3FF013421D60}
 		{867B4AA8-EEC3-4999-8BB1-AB03AF213F26} = {B7C98187-1557-4BB9-A69A-3FF013421D60}
+		{31F71699-D567-41CB-AD0E-6A8B94E16694} = {DA9E776D-BAA6-43CD-831D-153D5BA5D298}
 	EndGlobalSection
 EndGlobal
