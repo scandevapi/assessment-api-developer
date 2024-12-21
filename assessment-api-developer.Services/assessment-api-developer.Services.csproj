@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\assessment-api-developer.Domain\assessment-api-developer.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
