@@ -29,12 +29,26 @@ namespace assessment_api_developer.Services.Services
 
         public async Task UpdateCustomerAsync(Customer customer)
         {
+            var existingCustomer = await EnsureCustomerExistsAsync(customer.ID);
             await _customerRepository.UpdateAsync(customer);
         }
 
         public async Task DeleteCustomerAsync(int id)
         {
+            var existingCustomer = await EnsureCustomerExistsAsync(id);
             await _customerRepository.DeleteAsync(id);
+        }
+
+
+
+        private async Task<Customer> EnsureCustomerExistsAsync(int customerId)
+        {
+            var customer = await _customerRepository.GetAsync(customerId);
+            if (customer == null)
+            {
+                throw new Exception($"Customer with id {customerId} not found");
+            }
+            return customer;
         }
     }
 }
