@@ -6,8 +6,8 @@ namespace assessment_api_developer.Domain.Interfaces
     {
         Task<Customer> GetCustomerByIdAsync(int id);
         Task<IEnumerable<Customer>> GetCustomersAsync();
-        Task<Customer> CreateCustomerAsync(Customer customer);
-        Task<Customer> UpdateCustomerAsync(Customer customer);
+        Task CreateCustomerAsync(Customer customer);
+        Task UpdateCustomerAsync(Customer customer);
         Task DeleteCustomerAsync(int id);
     }
 }
