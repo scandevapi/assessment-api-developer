@@ -1,4 +1,5 @@
-﻿using assessment_api_developer.Domain.Interfaces;
+﻿using assessment_api_developer.Domain.Exceptions;
+using assessment_api_developer.Domain.Interfaces;
 using assessment_api_developer.Domain.Models;
 
 namespace assessment_api_developer.Services.Services
@@ -46,7 +47,7 @@ namespace assessment_api_developer.Services.Services
             var customer = await _customerRepository.GetAsync(customerId);
             if (customer == null)
             {
-                throw new Exception($"Customer with id {customerId} not found");
+                throw new CustomerNotFoundException($"Customer with id {customerId} not found");
             }
             return customer;
         }
