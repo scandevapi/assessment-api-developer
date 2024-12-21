@@ -1,4 +1,5 @@
 using assessment_api_developer.Domain.Interfaces;
+using assessment_api_developer.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace assessment_api_developer.API.Controllers
@@ -14,6 +15,12 @@ namespace assessment_api_developer.API.Controllers
             _customerService = customerService;
         }
 
-
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Customer>),StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            var customers = await _customerService.GetAllCustomersAsync();
+            return Ok(customers);
+        }
     }
 }

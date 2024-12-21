@@ -1,6 +1,6 @@
 @assessment_api_developer.API_HostAddress = http://localhost:5155
 
-GET {{assessment_api_developer.API_HostAddress}}/weatherforecast/
+GET {{assessment_api_developer.API_HostAddress}}/api/V1/Customers/
 Accept: application/json
 
 ###

@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\assessment-api-developer.Domain\assessment-api-developer.Domain.csproj" />
+    <ProjectReference Include="..\assessment-api-developer.Infra\assessment-api-developer.Infra.csproj" />
+    <ProjectReference Include="..\assessment-api-developer.Services\assessment-api-developer.Services.csproj" />
   </ItemGroup>
 
 </Project>
