@@ -1,4 +1,11 @@
 ﻿@page
 @model assessment_api_developer.UI.Pages.CustomersModel
 @{
+    ViewData["Title"] = "Customers Management";
 }
+
+<h1>@ViewData["Title"]</h1>
+
+<select id="customerDropdown" class="form-select" asp-for="SelectedCustomerId" asp-items="Model.Customers">
+    <option value="">Select a customer</option>
+</select>
