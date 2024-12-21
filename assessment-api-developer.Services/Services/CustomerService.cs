@@ -62,11 +62,11 @@ namespace assessment_api_developer.Services.Services
             {
                 if (!IsValidStateOrProvince(customer.Country, customer.State))
                 {
-                    throw new Exception("Invalid state or province for the selected country.");
+                    throw new CustomerStateZipException("Invalid state or province for the selected country.");
                 }
                 if (!IsValidateZipCode(customer.Country, customer.Zip))
                 {
-                    throw new Exception("Invalid zip code for the selected country.");
+                    throw new CustomerStateZipException("Invalid zip code for the selected country.");
                 }
             }
         }
