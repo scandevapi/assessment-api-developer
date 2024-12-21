@@ -22,12 +22,12 @@ namespace assessment_api_developer.Services.Services
             return await _customerRepository.GetAsync(id);
         }
 
-        public async Task<Customer> AddCustomerAsync(Customer customer)
+        public async Task AddCustomerAsync(Customer customer)
         {
             await _customerRepository.AddAsync(customer);
         }
 
-        public async Task<Customer> UpdateCustomerAsync(Customer customer)
+        public async Task UpdateCustomerAsync(Customer customer)
         {
             await _customerRepository.UpdateAsync(customer);
         }
