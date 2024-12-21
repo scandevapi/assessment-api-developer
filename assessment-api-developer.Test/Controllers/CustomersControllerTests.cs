@@ -94,5 +94,15 @@ namespace assessment_api_developer.Test.Services
             Assert.NotNull(result);
         }
 
+        [Fact]
+        public async Task DeleteCustomer_ShouldReturnNoContentResult()
+        {
+            _mockService.Setup(s => s.GetCustomerAsync(1)).ReturnsAsync(new Customer { ID = 1 });
+            _mockService.Setup(s => s.DeleteCustomerAsync(1)).Verifiable();
+
+            var result = await _controller.DeleteCustomer(1) as NoContentResult;
+
+            Assert.NotNull(result);
+        }
     }
 }

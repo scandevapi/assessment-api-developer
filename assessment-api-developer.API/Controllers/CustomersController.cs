@@ -92,5 +92,22 @@ namespace assessment_api_developer.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteCustomer(int id)
+        {
+            try
+            {
+                await _customerService.DeleteCustomerAsync(id);
+                return NoContent();
+            }
+            catch (CustomerNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }
