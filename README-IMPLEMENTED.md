@@ -1,8 +1,7 @@
-# API Developer Assessment
+# Project Overview
 
-In this assessment, you will demonstrate your ability to refactor code, implement common code and API design patterns and principles used in our codebase.
+This project demonstrates the refactoring and implementation of a customer management system following best practices in .NET C# development. The solution addresses the key goals outlined in the assessment, including adherence to SOLID principles, intelligent validation, and RESTful API design.
 
-Knowledge of common design patterns used in .NET C# development will be beneficial.
 ## Assignment
 
 The Customers.aspx page has code that renders a very simple form that allows users to add a customer to a dropdown list. The customers
