@@ -94,4 +94,62 @@
 
 @section Scripts {
     <script src="~/js/validation.js"></script>
+
+    <script>
+        document.getElementById('customerDropdown').addEventListener('change', function () {
+            var customerId = this.value;
+            if (customerId) {
+                fetch(`https://localhost:7015/api/V1/Customers/${customerId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector('[name="customer.ID"]').value = data.id;
+                        document.querySelector('[name="customer.Name"]').value = data.name;
+                        document.querySelector('[name="customer.Address"]').value = data.address;
+                        document.querySelector('[name="customer.Email"]').value = data.email;
+                        document.querySelector('[name="customer.Phone"]').value = data.phone;
+                        document.querySelector('[name="customer.City"]').value = data.postalCode;
+                        document.querySelector('[name="customer.State"]').value = data.city;
+                        document.querySelector('[name="customer.Zip"]').value = data.zip;
+                        document.querySelector('[name="customer.Country"]').value = data.country;
+                        document.querySelector('[name="customer.Notes"]').value = data.notes;
+                        document.querySelector('[name="customer.ContactName"]').value = data.contactname;
+                        document.querySelector('[name="customer.ContactEmail"]').value = data.contactemail;
+                        document.querySelector('[name="customer.ContactPhone"]').value = data.contactphone;
+                    });
+            }
+        });
+
+        document.getElementById('customerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = event.target;
+            var action = form.getAttribute('formaction');
+            var formData = new FormData(form);
+            var data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            fetch(action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    // Reload the dropdown
+                    fetch('https://localhost:7015/api/V1/Customers')
+                        .then(response => response.json())
+                        .then(customers => {
+                            var dropdown = document.getElementById('customerDropdown');
+                            dropdown.innerHTML = '<option value="">Select a customer</option>';
+                            customers.forEach(customer => {
+                                var option = document.createElement('option');
+                                option.value = customer.id;
+                                option.textContent = customer.name;
+                                dropdown.appendChild(option);
+                            });
+                        });
+                }
+            });
+        });
+    </script>
 }
