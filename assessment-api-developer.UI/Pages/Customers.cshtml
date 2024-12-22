@@ -6,9 +6,11 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<select id="customerDropdown" class="form-select col-md-6" asp-for="@Model.SelectedCustomerId" asp-items="@Model.Customers">
-    <option value="">Select a customer</option>
-</select>
+<div class="col-6">
+    <select id="customerDropdown" class="form-select col-md-6" asp-for="@Model.SelectedCustomerId" asp-items="@Model.Customers">
+        <option value="">Select a customer</option>
+    </select>
+</div>
 
 <div class="card mt-3">
     <div class="card-body">
