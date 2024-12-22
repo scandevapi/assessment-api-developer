@@ -21,31 +21,50 @@ namespace assessment_api_developer.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Customer>),StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllCustomers()
         {
-            var customers = await _customerService.GetAllCustomersAsync();
-            return Ok(customers);
+            try
+            {
+                var customers = await _customerService.GetAllCustomersAsync();
+                return Ok(customers);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details (ex)
+                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
+            }
         }
 
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCustomer(int id)
         {
-            var customer = await _customerService.GetCustomerAsync(id);
-            if (customer == null)
+            try
             {
-                return NotFound();
-            }
+                var customer = await _customerService.GetCustomerAsync(id);
+                if (customer == null)
+                {
+                    return NotFound();
+                }
 
-            return Ok(customer);
+                return Ok(customer);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details (ex)
+                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
+            }
         }
 
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddCustomer([FromBody] Customer customer)
         {
             try
@@ -66,6 +85,11 @@ namespace assessment_api_developer.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+            catch (Exception ex)
+            {
+                // Log the exception details (ex)
+                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
+            }
         }
 
 
@@ -73,6 +97,7 @@ namespace assessment_api_developer.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateCustomer(int id, [FromBody] Customer customer)
         {
             try
@@ -93,12 +118,18 @@ namespace assessment_api_developer.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+            catch (Exception ex)
+            {
+                // Log the exception details (ex)
+                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
+            }
         }
 
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
             try
@@ -109,6 +140,11 @@ namespace assessment_api_developer.API.Controllers
             catch (CustomerNotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details (ex)
+                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
             }
         }
     }
