@@ -18,68 +18,68 @@
             <h1>Add customer</h1>
 
             <form id="customerForm" method="post" class="container">
-                <input type="hidden" asp-for="customer.ID" />
+                <input type="hidden" asp-for="Customer.ID" />
 
                 <div class="mb-1">
-                    <label asp-for="customer.Name" class="form-label"></label>
-                    <input asp-for="customer.Name" class="form-control" />
+                    <label asp-for="Customer.Name" class="form-label"></label>
+                    <input asp-for="Customer.Name" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.Address" class="form-label"></label>
-                    <input asp-for="customer.Address" class="form-control" />
+                    <label asp-for="Customer.Address" class="form-label"></label>
+                    <input asp-for="Customer.Address" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.Email" class="form-label"></label>
-                    <input asp-for="customer.Email" class="form-control" />
+                    <label asp-for="Customer.Email" class="form-label"></label>
+                    <input asp-for="Customer.Email" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.Phone" class="form-label"></label>
-                    <input asp-for="customer.Phone" class="form-control" />
+                    <label asp-for="Customer.Phone" class="form-label"></label>
+                    <input asp-for="Customer.Phone" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.City" class="form-label"></label>
-                    <input asp-for="customer.City" class="form-control" />
+                    <label asp-for="Customer.City" class="form-label"></label>
+                    <input asp-for="Customer.City" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.State" class="form-label">Province/State</label>
-                    <input asp-for="customer.State" class="form-control" />
+                    <label asp-for="Customer.State" class="form-label">Province/State</label>
+                    <input asp-for="Customer.State" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.Zip" class="form-label">Postal/Zip Code</label>
-                    <input asp-for="customer.Zip" class="form-control" />
+                    <label asp-for="Customer.Zip" class="form-label">Postal/Zip Code</label>
+                    <input asp-for="Customer.Zip" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.Country" class="form-label"></label>
-                    <input asp-for="customer.Country" class="form-control" />
+                    <label asp-for="Customer.Country" class="form-label"></label>
+                    <input asp-for="Customer.Country" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.Notes" class="form-label"></label>
-                    <input asp-for="customer.Notes" class="form-control" />
+                    <label asp-for="Customer.Notes" class="form-label"></label>
+                    <input asp-for="Customer.Notes" class="form-control" />
                 </div>
 
                 <h1 class="mt-4">Customer Contact Details</h1>
 
                 <div class="mb-1">
-                    <label asp-for="customer.ContactName" class="form-label">Name</label>
-                    <input asp-for="customer.ContactName" class="form-control" />
+                    <label asp-for="Customer.ContactName" class="form-label">Name</label>
+                    <input asp-for="Customer.ContactName" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.ContactEmail" class="form-label">Email</label>
-                    <input asp-for="customer.ContactEmail" class="form-control" />
+                    <label asp-for="Customer.ContactEmail" class="form-label">Email</label>
+                    <input asp-for="Customer.ContactEmail" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="customer.ContactPhone" class="form-label">Phone</label>
-                    <input asp-for="customer.ContactPhone" class="form-control" />
+                    <label asp-for="Customer.ContactPhone" class="form-label">Phone</label>
+                    <input asp-for="Customer.ContactPhone" class="form-control" />
                 </div>
 
                 <div class="d-flex gap-2">
@@ -104,19 +104,19 @@
                 fetch(`https://localhost:7015/api/V1/Customers/${customerId}`)
                     .then(response => response.json())
                     .then(data => {
-                        document.querySelector('[name="customer.ID"]').value = data.id;
-                        document.querySelector('[name="customer.Name"]').value = data.name;
-                        document.querySelector('[name="customer.Address"]').value = data.address;
-                        document.querySelector('[name="customer.Email"]').value = data.email;
-                        document.querySelector('[name="customer.Phone"]').value = data.phone;
-                        document.querySelector('[name="customer.City"]').value = data.city;
-                        document.querySelector('[name="customer.State"]').value = data.state;
-                        document.querySelector('[name="customer.Zip"]').value = data.zip;
-                        document.querySelector('[name="customer.Country"]').value = data.country;
-                        document.querySelector('[name="customer.Notes"]').value = data.notes;
-                        document.querySelector('[name="customer.ContactName"]').value = data.contactName;
-                        document.querySelector('[name="customer.ContactEmail"]').value = data.contactEmail;
-                        document.querySelector('[name="customer.ContactPhone"]').value = data.contactPhone;
+                        document.querySelector('[name="Customer.ID"]').value = data.id;
+                        document.querySelector('[name="Customer.Name"]').value = data.name;
+                        document.querySelector('[name="Customer.Address"]').value = data.address;
+                        document.querySelector('[name="Customer.Email"]').value = data.email;
+                        document.querySelector('[name="Customer.Phone"]').value = data.phone;
+                        document.querySelector('[name="Customer.City"]').value = data.city;
+                        document.querySelector('[name="Customer.State"]').value = data.state;
+                        document.querySelector('[name="Customer.Zip"]').value = data.zip;
+                        document.querySelector('[name="Customer.Country"]').value = data.country;
+                        document.querySelector('[name="Customer.Notes"]').value = data.notes;
+                        document.querySelector('[name="Customer.ContactName"]').value = data.contactName;
+                        document.querySelector('[name="Customer.ContactEmail"]').value = data.contactEmail;
+                        document.querySelector('[name="Customer.ContactPhone"]').value = data.contactPhone;
                     });
             }
         });

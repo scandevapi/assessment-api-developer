@@ -1,21 +1,11 @@
-using assessment_api_developer.Domain.Interfaces;
-using assessment_api_developer.Infra.DataContext;
-using assessment_api_developer.Infra.Repositories;
-using assessment_api_developer.Services.Services;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-// Add DBContext Service
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
-
-// Add Services
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<CustomerService>();
+// Register HttpClient
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

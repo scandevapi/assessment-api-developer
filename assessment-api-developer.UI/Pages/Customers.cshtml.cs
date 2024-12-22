@@ -1,5 +1,5 @@
-using assessment_api_developer.Domain.Models;
-using assessment_api_developer.Services.Services;
+using assessment_api_developer.UI.Models;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,16 +8,16 @@ namespace assessment_api_developer.UI.Pages
 {
     public class CustomersModel : PageModel
     {
-        private readonly CustomerService _customerService;
+        private readonly HttpClient _httpClient;
 
-        public CustomersModel(CustomerService customerService)
+        public CustomersModel(HttpClient httpClient)
         {
-            _customerService = customerService;
+            _httpClient = httpClient;
         }
 
 
         [BindProperty]
-        public Customer customer { get; set; }
+        public Customer Customer { get; set; }
 
         [BindProperty]
         public int SelectedCustomerId { get; set; }
@@ -25,33 +25,39 @@ namespace assessment_api_developer.UI.Pages
         public List<SelectListItem> Customers { get; set; }
 
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            LoadCustomers();
+           await LoadCustomersAsync();
         }
 
-        public async Task<IActionResult> OnPostAdd()
+        public async Task<IActionResult> OnPostAddAsync()
         {
-            await _customerService.AddCustomerAsync(customer);
+            var response = await _httpClient.PostAsJsonAsync("https://localhost:7015/api/V1/Customers", Customer);
+            response.EnsureSuccessStatusCode();
             return RedirectToPage();
         }
 
-        public async Task<IActionResult> OnPostEdit()
+        public async Task<IActionResult> OnPostEditAsync()
         {
-            await _customerService.UpdateCustomerAsync(customer);
+            var response = await _httpClient.PutAsJsonAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}", Customer); ;
+            response.EnsureSuccessStatusCode();
             return RedirectToPage();
         }
 
-        public async Task<IActionResult> OnPostDelete()
+        public async Task<IActionResult> OnPostDeleteAsync()
         {
-            await _customerService.DeleteCustomerAsync(customer.ID);
+            var response = await _httpClient.DeleteAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}");
+            response.EnsureSuccessStatusCode();
             return RedirectToPage();
         }
 
 
-        private void LoadCustomers()
+        private async Task LoadCustomersAsync()
         {
-            Customers = _customerService.GetAllCustomersAsync().Result.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.Name }).ToList();
+            var response = await _httpClient.GetAsync("https://localhost:7015/api/V1/Customers");
+            response.EnsureSuccessStatusCode();
+            var customers = await response.Content.ReadFromJsonAsync<List<Customer>>();
+            Customers = customers.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.Name }).ToList();
         }
     }
 }

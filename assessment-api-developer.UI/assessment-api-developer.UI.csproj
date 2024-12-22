@@ -7,9 +7,4 @@
     <RootNamespace>assessment_api_developer.UI</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\assessment-api-developer.Infra\assessment-api-developer.Infra.csproj" />
-    <ProjectReference Include="..\assessment-api-developer.Services\assessment-api-developer.Services.csproj" />
-  </ItemGroup>
-
 </Project>
