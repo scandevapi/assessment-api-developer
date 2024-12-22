@@ -24,6 +24,9 @@ namespace assessment_api_developer.UI.Pages
 
         public List<SelectListItem> Customers { get; set; }
 
+        public string Message { get; set; }
+
+
 
         public async Task OnGetAsync()
         {
@@ -39,7 +42,12 @@ namespace assessment_api_developer.UI.Pages
             }
 
             var response = await _httpClient.PostAsJsonAsync("https://localhost:7015/api/V1/Customers", Customer);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                Message = $"Error: {response.StatusCode}";
+                await LoadCustomersAsync();
+                return Page();
+            }
             return RedirectToPage();
         }
 
@@ -52,14 +60,24 @@ namespace assessment_api_developer.UI.Pages
             }
 
             var response = await _httpClient.PutAsJsonAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}", Customer); ;
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                Message = $"Error: {response.StatusCode}";
+                await LoadCustomersAsync();
+                return Page();
+            }
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync()
         {
             var response = await _httpClient.DeleteAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}");
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                Message = $"Error: {response.StatusCode}";
+                await LoadCustomersAsync();
+                return Page();
+            }
             return RedirectToPage();
         }
 
