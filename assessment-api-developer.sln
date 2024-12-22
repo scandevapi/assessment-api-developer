@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Database", "0.Database", 
 	ProjectSection(SolutionItems) = preProject
 		C:\Users\Developer\Desktop\SQL-DB-Backup.zip = C:\Users\Developer\Desktop\SQL-DB-Backup.zip
 		C:\Users\Developer\Desktop\SQL-DB.zip = C:\Users\Developer\Desktop\SQL-DB.zip
+		C:\Users\Developer\Desktop\SQL-Scripts.zip = C:\Users\Developer\Desktop\SQL-Scripts.zip
 	EndProjectSection
 EndProject
 Global
