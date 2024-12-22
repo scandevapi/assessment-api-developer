@@ -7,7 +7,7 @@ namespace assessment_api_developer.UI.Models
         public int ID { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public string? Address { get; set; }
 
         [EmailAddress]
