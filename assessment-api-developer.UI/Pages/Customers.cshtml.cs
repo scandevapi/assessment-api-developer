@@ -44,7 +44,8 @@ namespace assessment_api_developer.UI.Pages
             var response = await _httpClient.PostAsJsonAsync("https://localhost:7015/api/V1/Customers", Customer);
             if (!response.IsSuccessStatusCode)
             {
-                Message = $"Error: {response.StatusCode}";
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Message = $"Error: {response.StatusCode} - {errorContent}";
                 await LoadCustomersAsync();
                 return Page();
             }
@@ -62,7 +63,8 @@ namespace assessment_api_developer.UI.Pages
             var response = await _httpClient.PutAsJsonAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}", Customer); ;
             if (!response.IsSuccessStatusCode)
             {
-                Message = $"Error: {response.StatusCode}";
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Message = $"Error: {response.StatusCode} - {errorContent}";
                 await LoadCustomersAsync();
                 return Page();
             }
@@ -74,7 +76,8 @@ namespace assessment_api_developer.UI.Pages
             var response = await _httpClient.DeleteAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}");
             if (!response.IsSuccessStatusCode)
             {
-                Message = $"Error: {response.StatusCode}";
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Message = $"Error: {response.StatusCode} - {errorContent}";
                 await LoadCustomersAsync();
                 return Page();
             }
