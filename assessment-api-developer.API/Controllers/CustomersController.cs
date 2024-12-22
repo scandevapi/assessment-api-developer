@@ -85,6 +85,10 @@ namespace assessment_api_developer.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+            catch (CustomerExistException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception ex)
             {
                 // Log the exception details (ex)
