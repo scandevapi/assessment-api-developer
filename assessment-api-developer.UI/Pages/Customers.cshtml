@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <div class="col-6">
-    <select id="customerDropdown" class="form-select col-md-6" asp-for="@Model.SelectedCustomerId" asp-items="@Model.Customers">
+    <select id="customerDropdown" class="form-select col-md-6" asp-for="SelectedCustomerId" asp-items="Model.Customers" onchange="this.form.submit()">
         <option value="">Select a customer</option>
     </select>
 </div>
@@ -16,77 +16,79 @@
     <div class="card-body">
         <div class="col-md-6">
             <h1>Add customer</h1>
+
             <form id="customerForm" method="post" class="container">
-                <input type="hidden" asp-for="@Model.customer.ID" />
+                <input type="hidden" asp-for="customer.ID" />
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Name" class="form-label"></label>
-                    <input asp-for="@Model.customer.Name" class="form-control" />
+                    <label asp-for="customer.Name" class="form-label"></label>
+                    <input asp-for="customer.Name" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Address" class="form-label"></label>
-                    <input asp-for="@Model.customer.Address" class="form-control" />
+                    <label asp-for="customer.Address" class="form-label"></label>
+                    <input asp-for="customer.Address" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Email" class="form-label"></label>
-                    <input asp-for="@Model.customer.Email" class="form-control" />
+                    <label asp-for="customer.Email" class="form-label"></label>
+                    <input asp-for="customer.Email" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Phone" class="form-label"></label>
-                    <input asp-for="@Model.customer.Phone" class="form-control" />
+                    <label asp-for="customer.Phone" class="form-label"></label>
+                    <input asp-for="customer.Phone" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.City" class="form-label"></label>
-                    <input asp-for="@Model.customer.City" class="form-control" />
+                    <label asp-for="customer.City" class="form-label"></label>
+                    <input asp-for="customer.City" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.State" class="form-label">Province/State</label>
-                    <input asp-for="@Model.customer.State" class="form-control" />
+                    <label asp-for="customer.State" class="form-label">Province/State</label>
+                    <input asp-for="customer.State" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Zip" class="form-label">Postal/Zip Code</label>
-                    <input asp-for="@Model.customer.Zip" class="form-control" />
+                    <label asp-for="customer.Zip" class="form-label">Postal/Zip Code</label>
+                    <input asp-for="customer.Zip" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Country" class="form-label"></label>
-                    <input asp-for="@Model.customer.Country" class="form-control" />
+                    <label asp-for="customer.Country" class="form-label"></label>
+                    <input asp-for="customer.Country" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.Notes" class="form-label"></label>
-                    <input asp-for="@Model.customer.Notes" class="form-control" />
+                    <label asp-for="customer.Notes" class="form-label"></label>
+                    <input asp-for="customer.Notes" class="form-control" />
                 </div>
 
                 <h1 class="mt-4">Customer Contact Details</h1>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.ContactName" class="form-label">Name</label>
-                    <input asp-for="@Model.customer.ContactName" class="form-control" />
+                    <label asp-for="customer.ContactName" class="form-label">Name</label>
+                    <input asp-for="customer.ContactName" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.ContactEmail" class="form-label">Email</label>
-                    <input asp-for="@Model.customer.ContactEmail" class="form-control" />
+                    <label asp-for="customer.ContactEmail" class="form-label">Email</label>
+                    <input asp-for="customer.ContactEmail" class="form-control" />
                 </div>
 
                 <div class="mb-1">
-                    <label asp-for="@Model.customer.ContactPhone" class="form-label">Phone</label>
-                    <input asp-for="@Model.customer.ContactPhone" class="form-control" />
+                    <label asp-for="customer.ContactPhone" class="form-label">Phone</label>
+                    <input asp-for="customer.ContactPhone" class="form-control" />
                 </div>
 
                 <div class="d-flex gap-2">
-                    <button class="btn btn-primary" type="submit" formaction="/Customers/Add">Add</button>
-                    <button class="btn btn-success" type="submit" formaction="/Customers/Edit">Edit</button>
-                    <button class="btn btn-danger" type="submit" formaction="/Customers/Delete">Delete</button>
+                    <button class="btn btn-primary" type="submit" asp-page-handler="Add">Add</button>
+                    <button class="btn btn-success" type="submit" asp-page-handler="Edit">Edit</button>
+                    <button class="btn btn-danger" type="submit" asp-page-handler="Delete">Delete</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
@@ -107,49 +109,16 @@
                         document.querySelector('[name="customer.Address"]').value = data.address;
                         document.querySelector('[name="customer.Email"]').value = data.email;
                         document.querySelector('[name="customer.Phone"]').value = data.phone;
-                        document.querySelector('[name="customer.City"]').value = data.postalCode;
-                        document.querySelector('[name="customer.State"]').value = data.city;
+                        document.querySelector('[name="customer.City"]').value = data.city;
+                        document.querySelector('[name="customer.State"]').value = data.state;
                         document.querySelector('[name="customer.Zip"]').value = data.zip;
                         document.querySelector('[name="customer.Country"]').value = data.country;
                         document.querySelector('[name="customer.Notes"]').value = data.notes;
-                        document.querySelector('[name="customer.ContactName"]').value = data.contactname;
-                        document.querySelector('[name="customer.ContactEmail"]').value = data.contactemail;
-                        document.querySelector('[name="customer.ContactPhone"]').value = data.contactphone;
+                        document.querySelector('[name="customer.ContactName"]').value = data.contactName;
+                        document.querySelector('[name="customer.ContactEmail"]').value = data.contactEmail;
+                        document.querySelector('[name="customer.ContactPhone"]').value = data.contactPhone;
                     });
             }
-        });
-
-        document.getElementById('customerForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            var form = event.target;
-            var action = form.getAttribute('formaction');
-            var formData = new FormData(form);
-            var data = {};
-            formData.forEach((value, key) => data[key] = value);
-
-            fetch(action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            }).then(response => {
-                if (response.ok) {
-                    // Reload the dropdown
-                    fetch('https://localhost:7015/api/V1/Customers')
-                        .then(response => response.json())
-                        .then(customers => {
-                            var dropdown = document.getElementById('customerDropdown');
-                            dropdown.innerHTML = '<option value="">Select a customer</option>';
-                            customers.forEach(customer => {
-                                var option = document.createElement('option');
-                                option.value = customer.id;
-                                option.textContent = customer.name;
-                                dropdown.appendChild(option);
-                            });
-                        });
-                }
-            });
         });
     </script>
 }

@@ -27,10 +27,10 @@ namespace assessment_api_developer.UI.Pages
 
         public void OnGet()
         {
-            Customers = _customerService.GetAllCustomersAsync().Result.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.Name }).ToList();
+            LoadCustomers();
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAdd()
         {
             await _customerService.AddCustomerAsync(customer);
             return RedirectToPage();
@@ -46,6 +46,12 @@ namespace assessment_api_developer.UI.Pages
         {
             await _customerService.DeleteCustomerAsync(customer.ID);
             return RedirectToPage();
+        }
+
+
+        private void LoadCustomers()
+        {
+            Customers = _customerService.GetAllCustomersAsync().Result.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.Name }).ToList();
         }
     }
 }
