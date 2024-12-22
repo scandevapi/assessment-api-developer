@@ -4,7 +4,7 @@ namespace assessment_api_developer.UI.Models
 {
     public class Customer
     {
-        public int ID { get; set; }
+        public int ID { get; set; } = 0;
 
         [Required]
         public string? Name { get; set; }

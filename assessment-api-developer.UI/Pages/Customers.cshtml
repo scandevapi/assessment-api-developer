@@ -24,7 +24,7 @@
 
             <form id="customerForm" method="post" class="container">
                 <input type="hidden" asp-for="Customer.ID" value="0" />
-                <span class="text-danger" asp-validation-for="Customer.ID"></span>
+                @* <span class="text-danger" asp-validation-for="Customer.ID"></span> *@
 
                 <div class="mb-1">
                     <label asp-for="Customer.Name" class="form-label"></label>
@@ -72,7 +72,7 @@
                     <label asp-for="Customer.Country" class="form-label"></label>
                     <select asp-for="Customer.Country" class="form-select">
                         <option value="Canada">Canada</option>
-                        <option value="United States">UnitedStates</option>
+                        <option value="UnitedStates">United States</option>
                     </select>
                     <span class="text-danger" asp-validation-for="Customer.Country"></span>
                 </div>
