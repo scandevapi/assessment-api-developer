@@ -32,6 +32,12 @@ namespace assessment_api_developer.UI.Pages
 
         public async Task<IActionResult> OnPostAddAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                await LoadCustomersAsync();
+                return Page();
+            }
+
             var response = await _httpClient.PostAsJsonAsync("https://localhost:7015/api/V1/Customers", Customer);
             response.EnsureSuccessStatusCode();
             return RedirectToPage();
@@ -39,6 +45,12 @@ namespace assessment_api_developer.UI.Pages
 
         public async Task<IActionResult> OnPostEditAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                await LoadCustomersAsync();
+                return Page();
+            }
+
             var response = await _httpClient.PutAsJsonAsync($"https://localhost:7015/api/V1/Customers/{Customer.ID}", Customer); ;
             response.EnsureSuccessStatusCode();
             return RedirectToPage();

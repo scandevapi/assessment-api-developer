@@ -23,6 +23,7 @@
                 <div class="mb-1">
                     <label asp-for="Customer.Name" class="form-label"></label>
                     <input asp-for="Customer.Name" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Customer.Name"></span>
                 </div>
 
                 <div class="mb-1">
@@ -53,6 +54,7 @@
                 <div class="mb-1">
                     <label asp-for="Customer.Zip" class="form-label">Postal/Zip Code</label>
                     <input asp-for="Customer.Zip" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Customer.Zip"></span>
                 </div>
 
                 <div class="mb-1">
