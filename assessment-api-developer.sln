@@ -15,6 +15,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.UI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.Test", "assessment-api-developer.Test\assessment-api-developer.Test.csproj", "{31F71699-D567-41CB-AD0E-6A8B94E16694}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Domain", "1.Domain", "{F9578447-DAD5-4E57-B6AA-3EC3E56C0D2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Application", "{9A9BE4FC-8275-4E54-8630-BE4B3DF7177C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Infrastructure", "3.Infrastructure", "{B18BFE2F-4437-4542-AEDF-10F31A170E6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Presentation", "4.Presentation", "{AB417B96-1871-4428-9783-6EE4E12F0563}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Test", "5.Test", "{A33BDF38-27E5-40C4-81B7-F0FDB1F72652}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Database", "0.Database", "{2A037A07-07BC-4CA3-8F50-77DBDA0FEFCC}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Developer\Desktop\SQL-DB-Backup.zip = C:\Users\Developer\Desktop\SQL-DB-Backup.zip
+		C:\Users\Developer\Desktop\SQL-DB.zip = C:\Users\Developer\Desktop\SQL-DB.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +64,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{71E5DFDF-FC9A-4F79-88BE-D55A7886D0D5} = {F9578447-DAD5-4E57-B6AA-3EC3E56C0D2A}
+		{FB399758-E546-40C2-BC74-5B93E8101ED7} = {9A9BE4FC-8275-4E54-8630-BE4B3DF7177C}
+		{5BA98B0F-03C0-4D6C-9CF0-EEBFE57F0E25} = {B18BFE2F-4437-4542-AEDF-10F31A170E6D}
+		{BEFA0E1D-4606-4583-9A92-E48B9597B965} = {AB417B96-1871-4428-9783-6EE4E12F0563}
+		{867B4AA8-EEC3-4999-8BB1-AB03AF213F26} = {AB417B96-1871-4428-9783-6EE4E12F0563}
+		{31F71699-D567-41CB-AD0E-6A8B94E16694} = {A33BDF38-27E5-40C4-81B7-F0FDB1F72652}
 	EndGlobalSection
 EndGlobal
