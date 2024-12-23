@@ -40,8 +40,8 @@ var app = builder.Build();
 // Use CORS
 app.UseCors("AllowSpecificOrigin");
 
-// Add Rate Limiting Middleware
-app.UseMiddleware<RateLimitingMiddleware>(60); // Allow 60 requests per minute
+// Add Rate Limiting Middleware (Allow 60 requests per minute)
+app.UseMiddleware<RateLimitingMiddleware>(60); 
 
 // Add Error Handling Middleware
 app.UseMiddleware<ErrorHandlingMiddleware>();
