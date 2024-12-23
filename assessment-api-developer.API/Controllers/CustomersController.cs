@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace assessment_api_developer.API.Controllers
 {
     [ApiController]
-    [Route("api/V1/[controller]")]
+    [Route("api/v1/[controller]")]
     [EnableCors("AllowSpecificOrigin")]
     public class CustomersController : ControllerBase
     {
