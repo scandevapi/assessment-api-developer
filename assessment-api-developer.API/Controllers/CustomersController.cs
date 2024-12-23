@@ -2,12 +2,14 @@ using Asp.Versioning;
 using assessment_api_developer.Domain.Exceptions;
 using assessment_api_developer.Domain.Interfaces;
 using assessment_api_developer.Domain.Models;
+//using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace assessment_api_developer.API.Controllers
 {
     [ApiVersion("1")]
+    //[Authorize]
     [ApiController]
     [Route("api/v{v:apiVersion}/[controller]")]
     [EnableCors("AllowSpecificOrigin")]
@@ -106,6 +108,7 @@ namespace assessment_api_developer.API.Controllers
         }
 
 
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
