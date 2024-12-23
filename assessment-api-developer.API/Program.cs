@@ -50,6 +50,9 @@ app.UseCors("AllowSpecificOrigin");
 // Add Rate Limiting Middleware
 app.UseMiddleware<RateLimitingMiddleware>(60); // Allow 60 requests per minute
 
+// Add Error Handling Middleware
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

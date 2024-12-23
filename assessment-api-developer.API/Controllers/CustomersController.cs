@@ -20,20 +20,12 @@ namespace assessment_api_developer.API.Controllers
 
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Customer>),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Customer>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllCustomers()
         {
-            try
-            {
-                var customers = await _customerService.GetAllCustomersAsync();
-                return Ok(customers);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception details (ex)
-                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
-            }
+            var customers = await _customerService.GetAllCustomersAsync();
+            return Ok(customers);
         }
 
 
@@ -43,21 +35,13 @@ namespace assessment_api_developer.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCustomer(int id)
         {
-            try
+            var customer = await _customerService.GetCustomerAsync(id);
+            if (customer == null)
             {
-                var customer = await _customerService.GetCustomerAsync(id);
-                if (customer == null)
-                {
-                    return NotFound();
-                }
+                return NotFound();
+            }
 
-                return Ok(customer);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception details (ex)
-                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
-            }
+            return Ok(customer);
         }
 
 
@@ -89,11 +73,6 @@ namespace assessment_api_developer.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            catch (Exception ex)
-            {
-                // Log the exception details (ex)
-                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
-            }
         }
 
 
@@ -106,7 +85,7 @@ namespace assessment_api_developer.API.Controllers
         {
             try
             {
-                if(id != customer.ID || !ModelState.IsValid)
+                if (id != customer.ID || !ModelState.IsValid)
                 {
                     return BadRequest();
                 }
@@ -121,11 +100,6 @@ namespace assessment_api_developer.API.Controllers
             catch (CustomerStateZipException ex)
             {
                 return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception details (ex)
-                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
             }
         }
 
@@ -144,11 +118,6 @@ namespace assessment_api_developer.API.Controllers
             catch (CustomerNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception details (ex)
-                return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred.");
             }
         }
     }
