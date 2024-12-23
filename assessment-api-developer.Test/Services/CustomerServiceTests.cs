@@ -1,3 +1,4 @@
+using assessment_api_developer.Domain.Exceptions;
 using assessment_api_developer.Domain.Interfaces;
 using assessment_api_developer.Domain.Models;
 using assessment_api_developer.Services.Services;
@@ -63,6 +64,38 @@ namespace assessment_api_developer.Test.Services
         }
 
         [Fact]
+        public async Task AddCustomerAsync_InvalidStateUS_ShouldThrowException()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "InvalidState", Zip = "12345" };
+
+            await Assert.ThrowsAsync<CustomerStateZipException>(() => _customerService.AddCustomerAsync(customer));
+        }
+
+        [Fact]
+        public async Task AddCustomerAsync_InvalidStateCanada_ShouldThrowException()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "Canada", State = "InvalidState", Zip = "T3B 6F7" };
+
+            await Assert.ThrowsAsync<CustomerStateZipException>(() => _customerService.AddCustomerAsync(customer));
+        }
+
+        [Fact]
+        public async Task AddCustomerAsync_InvalidZipCodeUS_ShouldThrowException()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "California", Zip = "1234" };
+
+            await Assert.ThrowsAsync<CustomerStateZipException>(() => _customerService.AddCustomerAsync(customer));
+        }
+
+        [Fact]
+        public async Task AddCustomerAsync_InvalidZipCodeCanada_ShouldThrowException()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "Canada", State = "Alberta", Zip = "T3B000" };
+
+            await Assert.ThrowsAsync<CustomerStateZipException>(() => _customerService.AddCustomerAsync(customer));
+        }
+
+        [Fact]
         public async Task UpdateCustomer_ShouldCallRepositotyUpdate()
         {
             var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "California", Zip = "12345" };
@@ -85,6 +118,15 @@ namespace assessment_api_developer.Test.Services
         }
 
         [Fact]
+        public async Task UpdateCustomerAsync_CustomerNotFound_ShouldThrowException()
+        {
+            var customer = new Customer { ID = 99, Name = "NonExistent Customer" };
+            _mockRepository.Setup(r => r.GetAsync(customer.ID)).ReturnsAsync((Customer)null);
+
+            await Assert.ThrowsAsync<CustomerNotFoundException>(() => _customerService.UpdateCustomerAsync(customer));
+        }
+
+        [Fact]
         public async Task DeleteCustomerAsync_ShouldCallRepositoryDelete()
         {
             var customer = new Customer { ID = 1, Name = "Customer One" };
@@ -93,6 +135,14 @@ namespace assessment_api_developer.Test.Services
             await _customerService.DeleteCustomerAsync(customer.ID);
 
             _mockRepository.Verify(r => r.DeleteAsync(customer.ID), Times.Once);
+        }
+
+        [Fact]
+        public async Task DeleteCustomerAsync_CustomerNotFound_ShouldThrowException()
+        {
+            _mockRepository.Setup(r => r.GetAsync(It.IsAny<int>())).ReturnsAsync((Customer)null);
+
+            await Assert.ThrowsAsync<CustomerNotFoundException>(() => _customerService.DeleteCustomerAsync(99));
         }
     }
 }
