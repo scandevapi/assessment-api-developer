@@ -51,6 +51,9 @@ Implemented a complete set of API endpoints:
    git clone [repository-link]
    cd [project-directory]
 
+2. **Configure CORS in API**:
+   - Add you configuration in API for Cores. `AllowSpecificOrigins`.
+
 ## Configure the project
 
 By default, the project is configured to use in-memory data. If you want to use a SQL database, follow these steps:
