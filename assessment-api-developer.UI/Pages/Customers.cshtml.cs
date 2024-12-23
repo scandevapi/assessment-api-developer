@@ -19,9 +19,6 @@ namespace assessment_api_developer.UI.Pages
         [BindProperty]
         public Customer Customer { get; set; }
 
-        [BindProperty]
-        public int SelectedCustomerId { get; set; }
-
         public List<SelectListItem> Customers { get; set; }
 
         public string Message { get; set; }
