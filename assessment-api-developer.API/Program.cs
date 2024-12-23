@@ -25,10 +25,17 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 
 // Configure CORS
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowSpecificOrigin",
+//        policy => policy.WithOrigins("https://localhost:7212")
+//                        .AllowAnyHeader()
+//                        .AllowAnyMethod());
+//});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        policy => policy.WithOrigins("https://localhost:7212")
+        policy => policy.AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
