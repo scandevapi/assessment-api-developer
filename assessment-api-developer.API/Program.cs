@@ -1,8 +1,9 @@
+using assessment_api_developer.API.Middlewares;
 using assessment_api_developer.Domain.Interfaces;
-using assessment_api_developer.Infra.DataContext;
+//using assessment_api_developer.Infra.DataContext;
 using assessment_api_developer.Infra.Repositories;
 using assessment_api_developer.Services.Services;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,9 @@ var app = builder.Build();
 
 // Use CORS
 app.UseCors("AllowSpecificOrigin");
+
+// Add Rate Limiting Middleware
+app.UseMiddleware<RateLimitingMiddleware>(60); // Allow 60 requests per minute
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
