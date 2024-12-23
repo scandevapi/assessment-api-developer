@@ -50,3 +50,19 @@ Implemented a complete set of API endpoints:
    ```bash
    git clone [repository-link]
    cd [project-directory]
+
+## Configure the project
+
+By default, the project is configured to use in-memory data. If you want to use a SQL database, follow these steps:
+
+1. **Modify the `CustomerRepository`**:
+   - Comment out all in-memory code.
+   - Uncomment all `DbContext` code.
+
+2. **Configure the database connection in the API project**:
+   - Update the connection string in the `appsettings.json` file.
+   - Ensure the `ICustomerRepository` service is registered correctly in the `Startup.cs` or `Program.cs` file.
+
+3. **Set up the SQL database**:
+   - Use one of the provided SQL scripts to create the database schema.
+   - Alternatively, you can use the provided database backup to restore the database.
