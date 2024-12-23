@@ -69,6 +69,13 @@ namespace assessment_api_developer.Services.Services
                     throw new CustomerStateZipException("Invalid zip code for the selected country.");
                 }
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(customer.Zip))
+                {
+                    throw new CustomerStateZipException("Zip code cannot be provided without a state or province.");
+                }
+            }
         }
 
 
