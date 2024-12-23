@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using assessment_api_developer.Domain.Exceptions;
 using assessment_api_developer.Domain.Interfaces;
 using assessment_api_developer.Domain.Models;
@@ -6,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace assessment_api_developer.API.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v{v:apiVersion}/[controller]")]
     [EnableCors("AllowSpecificOrigin")]
     public class CustomersController : ControllerBase
     {

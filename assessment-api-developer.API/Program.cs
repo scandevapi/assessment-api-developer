@@ -8,6 +8,7 @@ using Serilog;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using assessment_api_developer.API.Validators;
+using Asp.Versioning;
 
 
 
@@ -22,6 +23,24 @@ builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// Using API Versioning
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1);
+    options.ReportApiVersions = true;
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ApiVersionReader = ApiVersionReader.Combine(
+        new UrlSegmentApiVersionReader(),
+        new HeaderApiVersionReader("X-Api-Version"));
+})
+.AddMvc() // This is needed for controllers
+.AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'V";
+    options.SubstituteApiVersionInUrl = true;
+});
+
 
 //using FluentValidation
 builder.Services.AddFluentValidationAutoValidation()
