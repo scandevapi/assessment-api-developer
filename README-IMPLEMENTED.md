@@ -22,11 +22,11 @@ This project demonstrates the refactoring of a legacy customer management system
 
 ### 3. **RESTful API Endpoints**
 Implemented a complete set of API endpoints:
-- **GET /api/customers**: Retrieve all customers.
-- **GET /api/customers/{id}**: Retrieve a customer by ID.
-- **POST /api/customers**: Create a new customer.
-- **PUT /api/customers/{id}**: Update a customer.
-- **DELETE /api/customers/{id}**: Delete a customer.
+- **GET /api/v1/customers**: Retrieve all customers.
+- **GET /api/v1/customers/{id}**: Retrieve a customer by ID.
+- **POST /api/v1/customers**: Create a new customer.
+- **PUT /api/v1/customers/{id}**: Update a customer.
+- **DELETE /api/v1/customers/{id}**: Delete a customer.
 
 ### 4. **Dynamic UI Updates**
 - Integrated APIs with the dropdown list to dynamically reflect customer creation, updates, and deletions.
