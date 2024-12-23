@@ -1,6 +1,8 @@
 using assessment_api_developer.API.Controllers;
+using assessment_api_developer.Domain.Exceptions;
 using assessment_api_developer.Domain.Interfaces;
 using assessment_api_developer.Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -35,6 +37,17 @@ namespace assessment_api_developer.Test.Services
         }
 
         [Fact]
+        public async Task GetAllCustomers_ShouldReturnInternalServerError_OnException()
+        {
+            _mockService.Setup(s => s.GetAllCustomersAsync()).ThrowsAsync(new Exception());
+
+            var result = await _controller.GetAllCustomers() as ObjectResult;
+
+            Assert.NotNull(result);
+            Assert.Equal(StatusCodes.Status500InternalServerError, result.StatusCode);
+        }
+
+        [Fact]
         public async Task GetCustomer_ShouldReturnOkObjectResult()
         {
             var customer = new Customer { ID = 1, Name = "Customer One" };
@@ -44,6 +57,16 @@ namespace assessment_api_developer.Test.Services
 
             Assert.NotNull(result);
             Assert.Equal(customer, result.Value);
+        }
+
+        [Fact]
+        public async Task GetCustomer_ShouldReturnNotFound_WhenCustomerDoesNotExist()
+        {
+            _mockService.Setup(s => s.GetCustomerAsync(It.IsAny<int>())).ReturnsAsync((Customer)null);
+
+            var result = await _controller.GetCustomer(1) as NotFoundResult;
+
+            Assert.NotNull(result);
         }
 
         [Fact]
@@ -59,6 +82,18 @@ namespace assessment_api_developer.Test.Services
         }
 
         [Fact]
+        public async Task AddCustomer_ShouldReturnBadRequest_OnCustomerStateZipException()
+        {
+            var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "InvalidState", Zip = "12345" };
+            _mockService.Setup(s => s.AddCustomerAsync(It.IsAny<Customer>())).ThrowsAsync(new CustomerStateZipException("Invalid state or province for the selected country."));
+
+            var result = await _controller.AddCustomer(customer) as BadRequestObjectResult;
+
+            Assert.NotNull(result);
+            Assert.Equal("Invalid state or province for the selected country.", result.Value);
+        }
+
+        [Fact]
         public async Task AddCustomer_WithoutZipCode_ShouldReturnCreatedAtAction()
         {
             var customer = new Customer { ID = 1, Name = "Customer One" };
@@ -71,6 +106,18 @@ namespace assessment_api_developer.Test.Services
         }
 
         [Fact]
+        public async Task AddCustomer_ShouldReturnBadRequest_OnInvalidModelState()
+        {
+            _controller.ModelState.AddModelError("Name", "Required");
+
+            var customer = new Customer { ID = 1, Country = "UnitedStates", State = "California", Zip = "12345" };
+
+            var result = await _controller.AddCustomer(customer) as BadRequestObjectResult;
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
         public async Task UpdateCustomer_ShouldReturnNoContentResult()
         {
             var customer = new Customer { ID = 1, Name = "Customer One", Country = "UnitedStates", State = "California", Zip = "12345" };
@@ -78,6 +125,16 @@ namespace assessment_api_developer.Test.Services
             _mockService.Setup(s => s.UpdateCustomerAsync(It.IsAny<Customer>())).Verifiable();
 
             var result = await _controller.UpdateCustomer(customer.ID, customer) as NoContentResult;
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_ShouldReturnBadRequest_OnMismatchedId()
+        {
+            var customer = new Customer { ID = 2, Name = "Customer One", Country = "UnitedStates", State = "California", Zip = "12345" };
+
+            var result = await _controller.UpdateCustomer(1, customer) as BadRequestResult;
 
             Assert.NotNull(result);
         }
@@ -103,6 +160,17 @@ namespace assessment_api_developer.Test.Services
             var result = await _controller.DeleteCustomer(1) as NoContentResult;
 
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task DeleteCustomer_ShouldReturnNotFound_WhenCustomerDoesNotExist()
+        {
+            _mockService.Setup(s => s.DeleteCustomerAsync(It.IsAny<int>())).ThrowsAsync(new CustomerNotFoundException("Customer not found"));
+
+            var result = await _controller.DeleteCustomer(1) as NotFoundObjectResult;
+
+            Assert.NotNull(result);
+            Assert.Equal("Customer not found", result.Value);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace assessment_api_developer.Infra.Repositories
             {
                 _context.Entry(existingCustomer).CurrentValues.SetValues(customer);
                 await _context.SaveChangesAsync();
-            }  
+            }
         }
 
         public async Task DeleteAsync(int id)
