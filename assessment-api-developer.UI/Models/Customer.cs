@@ -24,6 +24,8 @@ namespace assessment_api_developer.UI.Models
 
         [RegularExpression(@"(^\d{5}(-\d{4})?$)|(^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$)", ErrorMessage = "Invalid postal code format")]
         public string? Zip { get; set; }
+
+        [RegularExpression(@"^[A-Z][a-z]+(?:[A-Z][a-z]+)*$", ErrorMessage = "Country must be a valid full name with each word capitalized and no spaces.")]
         public string? Country { get; set; }
         public string? Notes { get; set; }
         public string? ContactName { get; set; }

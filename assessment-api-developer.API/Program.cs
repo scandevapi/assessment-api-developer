@@ -5,6 +5,11 @@ using assessment_api_developer.Infra.Repositories;
 using assessment_api_developer.Services.Services;
 //using Microsoft.EntityFrameworkCore;
 using Serilog;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using assessment_api_developer.API.Validators;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +22,12 @@ builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+//using FluentValidation
+builder.Services.AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<CustomerValidator>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
