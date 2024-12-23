@@ -1,4 +1,8 @@
-﻿namespace assessment_api_developer.API.Middlewares
+﻿//Requaired Nuget Packages
+//Logging: Microsoft.Extensions.Logging, Microsoft.Extensions.Logging.Console
+//Logging in file: Serilog.AspNetCore, Serilog.Sinks.File
+
+namespace assessment_api_developer.API.Middlewares
 {
     public class ErrorHandlingMiddleware
     {
