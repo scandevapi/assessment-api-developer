@@ -55,21 +55,33 @@ namespace assessment_api_developer.UI.Services
         {
             AddAuthorizationHeader();
             var response = await _httpClient.PostAsJsonAsync("api/v1/customers", customer);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Error: {response.StatusCode} - {errorContent}");
+            }
         }
 
         public async Task UpdateCustomerAsync(Customer customer)
         {
             AddAuthorizationHeader();
             var response = await _httpClient.PutAsJsonAsync($"api/v1/customers/{customer.ID}", customer);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Error: {response.StatusCode} - {errorContent}");
+            }
         }
 
         public async Task DeleteCustomerAsync(int id)
         {
             AddAuthorizationHeader();
             var response = await _httpClient.DeleteAsync($"api/v1/customers/{id}");
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Error: {response.StatusCode} - {errorContent}");
+            }
         }
     }
 }
