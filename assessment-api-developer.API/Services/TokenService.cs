@@ -21,7 +21,7 @@ namespace assessment_api_developer.API.Services
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
