@@ -23,13 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Presentation", "4.Present
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Test", "5.Test", "{A33BDF38-27E5-40C4-81B7-F0FDB1F72652}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Database", "0.Database", "{2A037A07-07BC-4CA3-8F50-77DBDA0FEFCC}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\Developer\Desktop\SQL-DB-Backup.zip = C:\Users\Developer\Desktop\SQL-DB-Backup.zip
-		C:\Users\Developer\Desktop\SQL-DB.zip = C:\Users\Developer\Desktop\SQL-DB.zip
-		C:\Users\Developer\Desktop\SQL-Scripts.zip = C:\Users\Developer\Desktop\SQL-Scripts.zip
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.Domain.Tests", "assessment-api-developer.Domain.Tests\assessment-api-developer.Domain.Tests.csproj", "{42EE628E-D9D5-4767-80E5-48386708F9B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assessment-api-developer.Services.Tests", "assessment-api-developer.Services.Tests\assessment-api-developer.Services.Tests.csproj", "{3A79290B-8000-46A7-8BE8-A8A9B40A4782}"

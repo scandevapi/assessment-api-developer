@@ -4,6 +4,11 @@
     ViewData["Title"] = "Home page";
 }
 
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-danger mt-3">@Model.Message</div>
+}
+
 <div>
     <h1 class="display-4">.NET API Developer Assessment</h1>
     <p>

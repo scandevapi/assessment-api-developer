@@ -1,4 +1,3 @@
-using Asp.Versioning;
 using assessment_api_developer.Domain.Exceptions;
 using assessment_api_developer.Domain.Interfaces;
 using assessment_api_developer.Domain.Models;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
 
 namespace assessment_api_developer.API.Controllers
 {
@@ -26,7 +26,7 @@ namespace assessment_api_developer.API.Controllers
 
 
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ProducesResponseType(typeof(IEnumerable<Customer>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllCustomers()
@@ -37,7 +37,7 @@ namespace assessment_api_developer.API.Controllers
 
 
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -54,7 +54,7 @@ namespace assessment_api_developer.API.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -86,7 +86,7 @@ namespace assessment_api_developer.API.Controllers
 
 
         [HttpPut("{id}")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -116,7 +116,7 @@ namespace assessment_api_developer.API.Controllers
 
         //[Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

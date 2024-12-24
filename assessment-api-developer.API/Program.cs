@@ -1,14 +1,21 @@
 using assessment_api_developer.API.Middlewares;
 using assessment_api_developer.Domain.Interfaces;
-//using assessment_api_developer.Infra.DataContext;
+using assessment_api_developer.Infra.DataContext;
 using assessment_api_developer.Infra.Repositories;
 using assessment_api_developer.Services.Services;
-//using Microsoft.EntityFrameworkCore;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+
 using Serilog;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using assessment_api_developer.API.Validators;
 using Asp.Versioning;
+using System.Text;
+using assessment_api_developer.API.Services;
 
 
 
@@ -55,10 +62,37 @@ builder.Services.AddSwaggerGen();
 // Add DBContext Service
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
 
-// Add Services
-//builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
+
+// Using Authentication And Authorization
+builder.Services.AddTransient<TokenService>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
+
+// Adding other Services
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 

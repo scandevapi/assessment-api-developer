@@ -2,6 +2,8 @@
 @model assessment_api_developer.UI.Pages.CustomersModel
 @{
     ViewData["Title"] = "Customer Registry";
+
+    var token = HttpContext.Session.GetString("JWToken");
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -117,29 +119,34 @@
 
 
 @section Scripts {
-    <script src="~/js/validation.js"></script>
-
+    <script>
+        var jwtToken = '@token';
+    </script>
     <script>
         document.getElementById('customerDropdown').addEventListener('change', function () {
             var customerId = this.value;
             if (customerId) {
-                fetch(`https://localhost:7015/api/V1/Customers/${customerId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.querySelector('[name="Customer.ID"]').value = data.id;
-                        document.querySelector('[name="Customer.Name"]').value = data.name;
-                        document.querySelector('[name="Customer.Address"]').value = data.address;
-                        document.querySelector('[name="Customer.Email"]').value = data.email;
-                        document.querySelector('[name="Customer.Phone"]').value = data.phone;
-                        document.querySelector('[name="Customer.City"]').value = data.city;
-                        document.querySelector('[name="Customer.State"]').value = data.state;
-                        document.querySelector('[name="Customer.Zip"]').value = data.zip;
-                        document.querySelector('[name="Customer.Country"]').value = data.country;
-                        document.querySelector('[name="Customer.Notes"]').value = data.notes;
-                        document.querySelector('[name="Customer.ContactName"]').value = data.contactName;
-                        document.querySelector('[name="Customer.ContactEmail"]').value = data.contactEmail;
-                        document.querySelector('[name="Customer.ContactPhone"]').value = data.contactPhone;
-                    });
+                fetch(`https://localhost:7015/api/v1/customers/${customerId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${jwtToken}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('[name="Customer.ID"]').value = data.id;
+                    document.querySelector('[name="Customer.Name"]').value = data.name;
+                    document.querySelector('[name="Customer.Address"]').value = data.address;
+                    document.querySelector('[name="Customer.Email"]').value = data.email;
+                    document.querySelector('[name="Customer.Phone"]').value = data.phone;
+                    document.querySelector('[name="Customer.City"]').value = data.city;
+                    document.querySelector('[name="Customer.State"]').value = data.state;
+                    document.querySelector('[name="Customer.Zip"]').value = data.zip;
+                    document.querySelector('[name="Customer.Country"]').value = data.country;
+                    document.querySelector('[name="Customer.Notes"]').value = data.notes;
+                    document.querySelector('[name="Customer.ContactName"]').value = data.contactName;
+                    document.querySelector('[name="Customer.ContactEmail"]').value = data.contactEmail;
+                    document.querySelector('[name="Customer.ContactPhone"]').value = data.contactPhone;
+                });
             }
         });
     </script>

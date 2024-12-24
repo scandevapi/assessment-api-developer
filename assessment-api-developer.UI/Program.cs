@@ -1,13 +1,27 @@
 
+using assessment_api_developer.UI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// Register CustomerService
+builder.Services.AddHttpClient<CustomerService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7015/");
+});
+
+// Using Authentication and Authorization
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+
 // Register HttpClient
 builder.Services.AddHttpClient();
 
 var app = builder.Build();
+
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
