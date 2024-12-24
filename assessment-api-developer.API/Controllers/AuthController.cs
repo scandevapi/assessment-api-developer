@@ -23,7 +23,7 @@ namespace assessment_api_developer.API.Controllers
         public IActionResult GenerateToken()
         {
             var token = _tokenService.GenerateToken();
-            return Ok(new { Token = token });
+            return Ok(new TokenResponse { Token = token });
         }
     }
 }
