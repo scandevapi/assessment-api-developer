@@ -4,9 +4,12 @@ namespace assessment_api_developer.Domain.Tests.Models
 {
     public class CanadianProvincesTests
     {
+
+
         [Fact]
         public void CanadianProvinces_ShouldHaveCorrectValues()
         {
+            // Act & Assert
             Assert.Equal(0, (int)CanadianProvinces.Alberta);
             Assert.Equal(1, (int)CanadianProvinces.BritishColumbia);
         }

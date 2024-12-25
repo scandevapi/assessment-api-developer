@@ -1,4 +1,5 @@
 ﻿using assessment_api_developer.API.Middlewares;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -17,6 +18,8 @@ namespace assessment_api_developer.API.Tests.Middlewares
             _mockLogger = new Mock<ILogger<ErrorHandlingMiddleware>>();
             _middleware = new ErrorHandlingMiddleware(_mockNext.Object, _mockLogger.Object);
         }
+
+
 
         [Fact]
         public async Task Invoke_NoException_CallsNextDelegate()

@@ -1,4 +1,5 @@
 ﻿using assessment_api_developer.API.Services;
+
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,6 +15,7 @@ namespace assessment_api_developer.API.Tests.Services
 
         public TokenServiceTests()
         {
+            // Arrange
             _mockConfiguration = new Mock<IConfiguration>();
             _mockConfiguration.SetupGet(config => config["Jwt:Key"]).Returns("S3cr3tK3yF0rJWT@1234567890!@#$%^&*()");
             _mockConfiguration.SetupGet(config => config["Jwt:Issuer"]).Returns("https://localhost:7015");
@@ -22,11 +24,15 @@ namespace assessment_api_developer.API.Tests.Services
             _tokenService = new TokenService(_mockConfiguration.Object);
         }
 
+
+
         [Fact]
         public void GenerateToken_ReturnsValidToken()
         {
+            // Act
             var token = _tokenService.GenerateToken();
 
+            // Assert
             Assert.NotNull(token);
 
             var tokenHandler = new JwtSecurityTokenHandler();

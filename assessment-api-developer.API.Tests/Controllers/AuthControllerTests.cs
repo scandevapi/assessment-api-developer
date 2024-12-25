@@ -1,5 +1,6 @@
 ﻿using assessment_api_developer.API.Controllers;
 using assessment_api_developer.API.Services;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Moq;
@@ -14,6 +15,7 @@ namespace assessment_api_developer.API.Tests.Controllers
 
         public AuthControllerTests()
         {
+            // Arrange
             _mockConfiguration = new Mock<IConfiguration>();
             _mockConfiguration.SetupGet(config => config["Jwt:Key"]).Returns("S3cr3tK3yF0rJWT@1234567890!@#$%^&*()");
             _mockConfiguration.SetupGet(config => config["Jwt:Issuer"]).Returns("https://localhost:7015");
@@ -23,11 +25,15 @@ namespace assessment_api_developer.API.Tests.Controllers
             _authController = new AuthController(_tokenService);
         }
 
+
+
         [Fact]
         public void GenerateToken_ReturnsOkResult_WithToken()
         {
+            // Act
             var result = _authController.GenerateToken() as OkObjectResult;
 
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(200, result.StatusCode);
             Assert.NotNull(result.Value);

@@ -4,9 +4,12 @@ namespace assessment_api_developer.Domain.Tests.Models
 {
     public class CustomerModelTests
     {
+
+
         [Fact]
         public void CustomerModel_ShouldInitializeCorrectly()
         {
+            // Arrange and Act
             var customer = new Customer() 
             { 
                 ID= 1, 
@@ -26,6 +29,7 @@ namespace assessment_api_developer.Domain.Tests.Models
                 ContactNotes = "ContactNotes", 
             };
 
+            // Assert
             Assert.Equal(1, customer.ID);
             Assert.Equal("Name", customer.Name);
             Assert.Equal("Address", customer.Address);
