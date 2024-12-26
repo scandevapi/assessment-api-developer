@@ -1,8 +1,10 @@
 ﻿using assessment_api_developer.API.Middlewares;
 
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using System.Text;
 using Moq;
+
 
 namespace assessment_api_developer.API.Tests.Middlewares
 {
@@ -10,11 +12,13 @@ namespace assessment_api_developer.API.Tests.Middlewares
     {
         private readonly Mock<RequestDelegate> _mockNext;
         private readonly AntiXssMiddleware _middleware;
+        private readonly Mock<ILogger<AntiXssMiddleware>> _mockLogger;
 
         public AntiXssMiddlewareTests()
         {
             _mockNext = new Mock<RequestDelegate>();
-            _middleware = new AntiXssMiddleware(_mockNext.Object);
+            _mockLogger = new Mock<ILogger<AntiXssMiddleware>>();
+            _middleware = new AntiXssMiddleware(_mockNext.Object, _mockLogger.Object);
         }
 
 

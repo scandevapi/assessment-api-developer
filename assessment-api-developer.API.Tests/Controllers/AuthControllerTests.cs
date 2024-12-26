@@ -3,6 +3,7 @@ using assessment_api_developer.API.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace assessment_api_developer.API.Tests.Controllers
@@ -12,6 +13,7 @@ namespace assessment_api_developer.API.Tests.Controllers
         private readonly Mock<IConfiguration> _mockConfiguration;
         private readonly TokenService _tokenService;
         private readonly AuthController _authController;
+        private readonly Mock<ILogger<TokenService>> _mockLogger;
 
         public AuthControllerTests()
         {
@@ -21,8 +23,11 @@ namespace assessment_api_developer.API.Tests.Controllers
             _mockConfiguration.SetupGet(config => config["Jwt:Issuer"]).Returns("https://localhost:7015");
             _mockConfiguration.SetupGet(config => config["Jwt:Audience"]).Returns("https://localhost:7212");
 
-            _tokenService = new TokenService(_mockConfiguration.Object);
+            _mockLogger = new Mock<ILogger<TokenService>>();
+
+            _tokenService = new TokenService(_mockConfiguration.Object, _mockLogger.Object);
             _authController = new AuthController(_tokenService);
+            
         }
 
 

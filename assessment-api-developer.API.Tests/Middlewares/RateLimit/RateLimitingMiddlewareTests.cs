@@ -1,5 +1,6 @@
 ﻿using assessment_api_developer.API.Middlewares;
 
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using Moq;
@@ -11,11 +12,13 @@ namespace assessment_api_developer.API.Tests.Middlewares
         private readonly Mock<RequestDelegate> _mockNext;
         private readonly RateLimitingMiddleware _middleware;
         private readonly int _requestsPerMinute = 5;
+        private readonly Mock<ILogger<RateLimitingMiddleware>> _mockLogger;
 
         public RateLimitingMiddlewareTests()
         {
             _mockNext = new Mock<RequestDelegate>();
-            _middleware = new RateLimitingMiddleware(_mockNext.Object, _requestsPerMinute);
+            _mockLogger = new Mock<ILogger<RateLimitingMiddleware>>();
+            _middleware = new RateLimitingMiddleware(_mockNext.Object, _requestsPerMinute, _mockLogger.Object);
         }
 
 

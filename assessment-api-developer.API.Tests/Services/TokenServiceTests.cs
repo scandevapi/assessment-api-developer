@@ -1,10 +1,12 @@
 ﻿using assessment_api_developer.API.Services;
 
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Moq;
+
 
 namespace assessment_api_developer.API.Tests.Services
 {
@@ -12,6 +14,7 @@ namespace assessment_api_developer.API.Tests.Services
     {
         private readonly Mock<IConfiguration> _mockConfiguration;
         private readonly TokenService _tokenService;
+        private readonly Mock<ILogger<TokenService>> _mockLogger;
 
         public TokenServiceTests()
         {
@@ -21,7 +24,9 @@ namespace assessment_api_developer.API.Tests.Services
             _mockConfiguration.SetupGet(config => config["Jwt:Issuer"]).Returns("https://localhost:7015");
             _mockConfiguration.SetupGet(config => config["Jwt:Audience"]).Returns("https://localhost:7212");
 
-            _tokenService = new TokenService(_mockConfiguration.Object);
+            _mockLogger = new Mock<ILogger<TokenService>>();
+
+            _tokenService = new TokenService(_mockConfiguration.Object, _mockLogger.Object);
         }
 
 
