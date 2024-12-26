@@ -2,7 +2,7 @@
 //Logging: Microsoft.Extensions.Logging, Microsoft.Extensions.Logging.Console
 //Logging in file: Serilog.AspNetCore, Serilog.Sinks.File
 
-using Newtonsoft.Json;
+//Porpose: This middleware is used to handle exceptions that occur during the processing of an HTTP request.
 
 namespace assessment_api_developer.API.Middlewares
 {

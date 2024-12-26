@@ -10,10 +10,13 @@ namespace assessment_api_developer.API.Middlewares
         private readonly int _requestsPerMinute;
         private readonly TimeSpan _timeSpan = TimeSpan.FromMinutes(1);
 
-        public RateLimitingMiddleware(RequestDelegate next, int requestsPerMinute)
+        private readonly ILogger<RateLimitingMiddleware> _logger;
+
+        public RateLimitingMiddleware(RequestDelegate next, int requestsPerMinute, ILogger<RateLimitingMiddleware> logger)
         {
             _next = next;
             _requestsPerMinute = requestsPerMinute;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -37,7 +40,7 @@ namespace assessment_api_developer.API.Middlewares
 
             if (rateLimitInfo.RequestCount > _requestsPerMinute)
             {
-                // Adding logs in console and save it in a file
+                _logger.LogWarning("Rate limit exceeded for IP: {ClientIp}", clientIp);
 
                 context.Response.StatusCode = StatusCodes.Status429TooManyRequests;
                 await context.Response.WriteAsync("Rate limit exceeded. Try again later.");
