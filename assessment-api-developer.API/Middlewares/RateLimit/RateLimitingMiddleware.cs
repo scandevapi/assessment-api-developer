@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿// Purpose: Middleware to limit the number of requests per minute for a client.
+using System.Collections.Concurrent;
 
 namespace assessment_api_developer.API.Middlewares
 {
@@ -36,6 +37,8 @@ namespace assessment_api_developer.API.Middlewares
 
             if (rateLimitInfo.RequestCount > _requestsPerMinute)
             {
+                // Adding logs in console and save it in a file
+
                 context.Response.StatusCode = StatusCodes.Status429TooManyRequests;
                 await context.Response.WriteAsync("Rate limit exceeded. Try again later.");
                 return;
