@@ -17,7 +17,7 @@ namespace assessment_api_developer.UI.Controllers
         [HttpGet("images/{filename}")]
         public IActionResult GetImage(string filename)
         {
-            var path = Path.Combine(_env.ContentRootPath, "DownloadCenter", "Images", filename);
+            var path = Path.Combine(_env.ContentRootPath, "DownloadCenter", "images", filename);
             if (!System.IO.File.Exists(path))
             {
                 return NotFound();

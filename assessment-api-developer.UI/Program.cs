@@ -1,4 +1,3 @@
-
 using assessment_api_developer.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,17 +5,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-// Register CustomerService
+//* Register CustomerService
 builder.Services.AddHttpClient<CustomerService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7015/");
 });
 
-// Using Authentication and Authorization
+//* Using Authentication and Authorization
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-// Register HttpClient
+//* Register HttpClient
 builder.Services.AddHttpClient();
 
 var app = builder.Build();
@@ -37,6 +36,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+//* Using Image controller for accessing images in forms
+app.MapControllerRoute(
+    name: "images",
+    pattern: "images/{filename}",
+    defaults: new { controller = "Image", action = "GetImage" });
 
 app.MapRazorPages();
 
