@@ -1,0 +1,49 @@
+
+Presentation - Folder and File Structure:
+'-------------------------'
+
+API-Project
+	- Controllers
+		- AuthController.cs
+		- CustomersController.cs
+
+	- Logs
+		- log-20241223.txt
+		- log-....txt
+
+	- Middlewares
+		- ErrorHandling
+			- ErrorHandlingMiddleware.cs
+		- RateLimit
+			- RateLimitInfo.cs
+			- RateLimitingMiddleware.cs
+		- Xss
+			- AntiXssMiddleware.cs
+
+	- Services
+		- JWToken
+			- TokenResponse.cs
+			- TokenService.cs
+
+	- Validators
+		- CustomerValidator.cs
+
+
+'-------------------------'
+
+
+UI-Project
+	- DownloadCenter
+	- Controllers
+		- ImageController.cs
+
+	- Models
+		- Customer.cs
+		- TokenResponse.cs
+
+	- Pages
+		- Index.cs
+		- Customers.cs
+
+	- Services
+		- CustomerService.cs

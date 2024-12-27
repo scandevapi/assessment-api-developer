@@ -1,0 +1,66 @@
+
+Tests - Folder and File Structure:
+'-------------------------'
+
+Domain-Tests
+	- Exceptions
+		- CustomerExistExceptionTests.cs
+		- CustomerNotFoundExceptionTests.cs
+		- CustomerStateZipExceptionTests.cs
+	- Interfaces
+		- CustomerExistException.cs
+		- CustomerNotFoundException.cs
+		- CustomerStateZipException.cs
+	- Models
+		- CustomerModelTests.cs
+		- Enums
+		- CanadianProvincesTests.cs
+		- CountriesTests.cs
+		- USStatesTests.cs
+
+'-------------------------'
+
+Services-Tests
+	- Services
+		- CustomerServiceTests.cs
+
+'-------------------------'
+
+Infra-Tests
+	- DataContext
+		- AppDbContextTests.cs
+	- Repositories
+		- CustomerRepositoriesTests.cs
+
+
+'-------------------------'
+
+API-Tests
+	- Controllers
+		- AuthControllerTests.cs
+		- CustomersControllerTests.cs
+	- Middlewares
+		- ErrorHandling
+			- ICustomerRepository.cs
+		- RateLimit
+			- RateLimitingMiddlewareTests.cs
+		- Xss
+			- AntiXssMiddlewareTests.cs
+	- Services
+		- TokenServiceTests.cs
+	- Validators
+		- CustomerValidatorTests.cs
+
+'-------------------------'
+
+UI-Tests
+	- Controllers
+		- ImageControllerTests.cs
+	- Pages
+		- IndexTests.cs
+		- CustomersTests.cs
+	- Models
+		- CustomerTests.cs
+		- TokenResponseTests.cs
+	- Services
+		- CustomerServiceTests.cs

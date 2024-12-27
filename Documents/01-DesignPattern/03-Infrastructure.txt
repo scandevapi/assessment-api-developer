@@ -1,0 +1,10 @@
+
+Infrastructure - Folder and File Structure:
+'-------------------------'
+
+Infra-Project
+	- DataContext
+		- AppDbContext.cs
+
+	- Repositories
+		- CustomerRepository.cs

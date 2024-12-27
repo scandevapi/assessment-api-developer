@@ -1,0 +1,7 @@
+
+Application - Folder and File Structure:
+'-------------------------'
+
+Services-Project
+	- Services
+		- CustomerService.cs

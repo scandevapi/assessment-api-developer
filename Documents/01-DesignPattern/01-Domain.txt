@@ -1,0 +1,20 @@
+
+Domain - Folder and File Structure:
+'-------------------------'
+
+Domain-Project
+	- Exceptions
+		- CustomerExistException.cs
+		- CustomerNotFoundException.cs
+		- CustomerStateZipException.cs
+
+	- Interfaces
+		- ICustomerRepository.cs
+		- ICustomerService.cs
+
+	- Models
+		- Customer.cs
+		- Enums
+			- CanadianProvinces.cs
+			- Countries.cs
+			- USStates.cs

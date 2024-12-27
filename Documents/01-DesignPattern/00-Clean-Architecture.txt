@@ -1,0 +1,23 @@
+
+Clean Architecture:
+
+Clean Architecture is a software design pattern that aims to create systems that are easy to maintain, test, and scale.
+In C#, Clean Architecture helps organize code in a way that separates concerns and ensures that the core business logic is independent of external factors like databases, frameworks, or user interfaces.
+
+Here are the main components of Clean Architecture:
+
+1) Domain Layer: This is the core of the application, containing business logic and entities. It should be independent of any external dependencies.
+2) Application Layer: This layer contains use cases and application-specific business rules. It acts as an intermediary between the domain layer and other layers.
+3) Infrastructure Layer: This layer includes implementations of interfaces defined in the domain layer, such as database access, file storage, and external services.
+4) Presentation Layer: This layer handles user interactions and displays data to the user. It can include web APIs, MVC controllers, or any other user interface components.
+
+A key principle of Clean Architecture is that dependencies should point inward, from the outer layers to the inner layers.
+This means that the core business logic (domain layer) remains unaffected by changes in the outer layers (infrastructure and presentation).
+
+For example, in a C# project using Clean Architecture, you might have:
+
+Domain Layer: Contains business entities and interfaces.
+Application Layer: Contains use case classes that implement business rules.
+Infrastructure Layer: Contains implementations of interfaces for data access, such as repositories.
+Presentation Layer: Contains controllers or API endpoints that interact with the application layer.
+This structure helps in creating a system that is modular, testable, and easy to maintain
