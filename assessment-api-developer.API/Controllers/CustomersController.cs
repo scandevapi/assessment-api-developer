@@ -42,12 +42,7 @@ namespace assessment_api_developer.API.Controllers
         public async Task<IActionResult> GetCustomer(int id)
         {
             var customer = await _customerService.GetCustomerAsync(id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(customer);
+            return customer == null ? NotFound() : Ok(customer);
         }
 
 
@@ -66,10 +61,6 @@ namespace assessment_api_developer.API.Controllers
 
                 await _customerService.AddCustomerAsync(customer);
                 return CreatedAtAction(nameof(GetCustomer), new { id = customer.ID }, customer);
-            }
-            catch (CustomerNotFoundException ex)
-            {
-                return NotFound(ex.Message);
             }
             catch (CustomerStateZipException ex)
             {
