@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace assessment_api_developer.Domain.Models
 {
     public class Customer
