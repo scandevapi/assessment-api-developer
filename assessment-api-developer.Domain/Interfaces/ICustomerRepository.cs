@@ -9,6 +9,5 @@ namespace assessment_api_developer.Domain.Interfaces
         Task AddAsync(Customer customer);
         Task UpdateAsync(Customer customer);
         Task DeleteAsync(int id);
-
     }
 }
