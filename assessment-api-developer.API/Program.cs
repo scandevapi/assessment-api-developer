@@ -49,8 +49,7 @@ builder.Services.AddApiVersioning(options =>
 
 
 //* using FluentValidation (For validation input data)
-builder.Services.AddFluentValidationAutoValidation()
-                .AddFluentValidationClientsideAdapters();
+builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<CustomerValidator>();
 
 
